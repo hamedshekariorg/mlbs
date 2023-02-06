@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "types": ["jest"],
+    "typeRoots": ["./", "./node_modules/@types"],
+    "downlevelIteration": true,
+    "incremental": true
+  },
+  "exclude": ["node_modules", "**/*.spec.js", "**/*.test.js"],
+  "include": [
+    "@types/jest",
+    "emotion.d.js",
+    "next-env.d.js",
+    "**/*.js",
+    "**/*.jsx"
+  ],
+  "paths": {
+    "components/*": ["./components/*"],
+    "services/*": ["./services/*"],
+    "interfaces/*": ["./interfaces/*"],
+    "utils/*": ["./utils/*"],
+    "public/*": ["./public/*"],
+    "store/*": ["./store/*"],
+    "lib/*": ["./lib/*"]
+  }
+}

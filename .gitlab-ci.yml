@@ -1,0 +1,45 @@
+cache:
+  - key: "$CI_PROJECT_ID"
+    untracked: true
+    paths:
+      - .yarn
+  - key: "stage"
+    policy: pull-push
+    untracked: true
+
+
+variables:
+  DOCKER_DRIVER: overlay2
+  CONTAINER_STAGE_TAG: stage-latest
+  REGISTRY_URL: registry.gitlab.blytd.com
+  ANSIBLE_PATH: .docker/ansible
+  CONTAINER_STAGE_IMAGE: $REGISTRY_URL/frontend/mlbs:$CONTAINER_STAGE_TAG
+
+
+stages:
+  - build
+  - stage
+
+build-stage:
+ stage: build
+ script:
+  #- docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $REGISTRY_URL
+  - docker login -u ci -p $PRIVATE_REGISTRY_PASSWD $REGISTRY_URL
+  - docker build -t ${CONTAINER_STAGE_IMAGE} .
+  - docker push ${CONTAINER_STAGE_IMAGE}
+ only:
+   - develop
+
+deploy-stage:
+  image:
+    name: williamyeh/ansible:ubuntu18.04
+  stage: stage
+  script:
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(cat "$DEVOPS_STAGE_SERVER_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - ansible-playbook $ANSIBLE_PATH/stage.yml --inventory $ANSIBLE_PATH/inventory.yml
+  only:
+    - develop

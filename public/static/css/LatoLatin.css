@@ -1,0 +1,51 @@
+@font-face {
+  font-family: LatoLatin;
+  src: url('../fonts/ttf/LatoLatin-Regular.ttf');
+  src: url('../fonts/eot/LatoLatin-Regular.eot') format('eot'),
+        url('../fonts/woff/LatoLatin-Regular.woff') format('woff');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'LatoLatin-Bold';
+  src: url('./../fonts/ttf/LatoLatin-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'LatoLatin-Regular';
+  src: url('./../fonts/ttf/LatoLatin-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'LatoLatin-Light';
+  src: url('./../fonts/ttf/LatoLatin-Light.ttf');
+}
+
+@font-face {
+  font-family: 'LatoLatin-Medium';
+  src: url('./../fonts/ttf/LatoLatin-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'LatoLatin-Thin';
+  src: url('./../fonts/ttf/LatoLatin-Thin.ttf');
+}
+
+@font-face {
+  font-family: 'LatoLatin';
+  src: url('./../fonts/ttf/LatoLatin-Medium.ttf');
+  src: url('./../fonts/eot/LatoLatin-Medium.eot') format('eot'),
+    url('./../fonts/woff/LatoLatin-Medium.woff') format('woff');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'LatoLatin';
+  src: url('./../fonts/ttf/LatoLatin-Bold.ttf');
+  src: url('./../fonts/eot/LatoLatin-Bold.eot') format('eot'),
+    url('./../fonts/woff/LatoLatin-Bold.woff') format('woff');
+}
+
+* {
+  font-family: LatoLatin-Regular, sans-serif;
+}

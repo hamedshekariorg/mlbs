@@ -1,0 +1,30 @@
+<svg
+    style={{ marginRight: 8 }}
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="0.333333"
+      y="0.333333"
+      width="15.3333"
+      height="15.3333"
+      rx="7.66667"
+      fill="#DAFFEA"
+    />
+    <path
+      d="M6.99935 10.0773L5.24935 8.19673L4.66602 8.82359L6.99935 11.3311L11.9993 5.95792L11.416 5.33105L6.99935 10.0773Z"
+      fill="#27AE60"
+    />
+    <rect
+      x="0.333333"
+      y="0.333333"
+      width="15.3333"
+      height="15.3333"
+      rx="7.66667"
+      stroke="#27AE60"
+      stroke-width="0.666667"
+    />
+  </svg>

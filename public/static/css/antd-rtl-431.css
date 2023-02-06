@@ -1,0 +1,54 @@
+/**
+ * ant design rtl fix.
+ * 4.3.1 version
+ */
+
+.rtlLayout {
+  direction: ltr;
+  font-family: iranyekan, Arial, 'Helvetica Neue', Helvetica, sans-serif !important;
+}
+
+.ant-notification-topRight
+  .ant-notification-notice-with-icon
+  .ant-notification-notice-message {
+  margin-right: 48px;
+  margin-left: 10px;
+}
+
+.ant-notification-topRight
+  .ant-notification-notice-with-icon
+  .ant-notification-notice-description {
+  margin-right: 48px;
+  margin-left: 10px;
+}
+
+.ant-notification-topRight
+  .ant-notification-notice-closable
+  .ant-notification-notice-message {
+  padding-left: 24px;
+  padding-right: 0;
+}
+
+.ant-notification-notice-close {
+  left: 22px;
+  right: auto !important;
+}
+
+.ant-modal-confirm .ant-modal-confirm-btns button + button {
+  margin-bottom: 0;
+  margin-right: 8px;
+  margin-left: 0;
+}
+
+.ant-btn > .ant-btn-loading-icon {
+  margin-left: 12px;
+}
+
+.ant-radio-button-wrapper-checked,.ant-radio-button-wrapper-checked:hover,
+.ant-radio-button-wrapper-checked, .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):first-child{
+  border-color: #2594A2 !important;
+  color: #2594A2 !important;
+}
+.ant-radio-button-wrapper{
+  color: #818181;
+}

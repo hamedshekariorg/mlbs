@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  blytd.front.service:
+    image: registry.gitlab.blytd.com/frontend/mlbs:stage-latest
+    container_name: mlbs.front.service
+    hostname: mlbs.front.service
+    restart: always
+    networks:
+      - blytd
+
+networks:
+  blytd:
+    external: true

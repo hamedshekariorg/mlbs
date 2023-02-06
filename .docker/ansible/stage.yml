@@ -1,0 +1,29 @@
+---
+- name: continues delivery
+  hosts: stage
+  user: devops
+  vars:
+    dest_path: /srv/stage/mlbs.stg.blytd.com
+
+  tasks:
+    - name: create necessary directories
+      file:
+        path: "{{ dest_path }}"
+        state: directory
+        owner: devops
+        group: devops
+
+    - name: copy compose file
+      template:
+        src: docker-compose.yml
+        dest: "{{ dest_path }}/docker-compose.yml"
+
+    - name: pull newer built images
+      shell: docker-compose pull
+      args:
+        chdir: "{{ dest_path }}"
+
+    - name: bring up the containers
+      shell: docker-compose up -d
+      args:
+        chdir: "{{ dest_path }}"

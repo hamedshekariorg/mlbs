@@ -1,0 +1,61 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: plugins/docker
+    settings:
+      registry: registry.blytd.com
+      repo: registry.blytd.com/blytd/front-mlbs
+      mirror: https://mirror.blytd.com
+      username:
+        from_secret: registry_username
+      password:
+        from_secret: registry_password
+    when:
+      branch:
+        - develop
+        - master
+      event:
+        - push
+
+  - name: stage
+    image: plugins/ansible
+    settings:
+      playbook: .docker/ansible/stage.yml
+      inventory: .docker/ansible/inventory.yml
+      private_key:
+        from_secret: devops_private_key
+    when:
+      branch:
+        - develop
+      event:
+        - push
+
+  - name: slack
+    image: plugins/slack
+    settings:
+      webhook:
+        from_secret: slack_webhook
+      channel: deployments
+      username: Notifier
+      template: >
+        *Status:* {{build.status}} {{#success build.status}}✔{{ else }}✘{{/success}}
+
+        *Repository:* {{repo.name}}
+
+        *Commit:* <https://git.blytd.com/{{ repo.owner }}/{{ repo.name }}/commit/{{ build.commit }}|{{ truncate build.commit 8 }}>
+
+        *Branch:* <https://git.blytd.com/{{ repo.owner }}/{{ repo.name }}/commits/{{ build.branch }}|{{ build.branch }}>
+
+        *Tag:* {{build.tag}}
+
+        *Trigger:* {{build.event}}
+
+        *Links:* <{{build.link}}|Pipeline>
+    when:
+      branch:
+        - master
+        - develop
+      event:
+        - push
